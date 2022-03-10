@@ -1158,7 +1158,7 @@ bool daylightSaving = false;
       #include <ESP8266WiFi.h>   // Includes AP class
       #if defined webSupport
         #include <ESP8266WebServer.h>  
-        #include <ESPmDNS.h>  
+        #include <ESP8266mDNS.h>  
         ESP8266WebServer server(80);  
         #include <WiFiUdp.h>       
       #endif      

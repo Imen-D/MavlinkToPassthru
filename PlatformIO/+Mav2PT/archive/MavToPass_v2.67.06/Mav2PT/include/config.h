@@ -96,7 +96,7 @@ V2.67.06  2021-11-25   Reset NVM settings to config settings if fw version chang
 // These are optional, and in addition to the F.Port telemetry output
 //#define GCS_Mavlink_IO  0    // Serial Port - simultaneous uplink and downlink serial not supported. Not enough uarts.   
 //#define GCS_Mavlink_IO  1    // BlueTooth Classic - ESP32 only
-//#define GCS_Mavlink_IO  2    // WiFi - ESP32 or ESP8266 only - auto selects on ESP8266
+#define GCS_Mavlink_IO  2    // WiFi - ESP32 or ESP8266 only - auto selects on ESP8266
 //#define GCS_Mavlink_IO  3    // WiFi AND Bluetooth simultaneously. DON'T DO THIS UNLESS YOU NEED IT. SRAM is scarce! - ESP32 only
 
 //#define GCS_Mavlink_SD       // SD Card - ESP32 only - mutually inclusive with GCS I/O
@@ -170,8 +170,8 @@ V2.67.06  2021-11-25   Reset NVM settings to config settings if fw version chang
 #define Start_WiFi                              // Start WiFi at startup, override startWiFi pin
 
 #define HostName             "MavToPass"        // This translator's host name
-#define APssid               "MavToPassthru"    // The AP SSID that we advertise         ====>
-#define APpw                 "password"         // Change me! Must be >= 8 chars
+#define APssid               "DroneWifi"        // The AP SSID that we advertise         ====>
+#define APpw                 "drone123"         // Change me! Must be >= 8 chars
 #define APchannel            9                  // The wifi channel to use for our AP
 #define STAssid              "Fairlawns"        // Target AP to connect to (in STA mode) <====
 #define STApw                "hotelguest"       // Target AP password (in STA mode). Must be >= 8 chars      

@@ -64,9 +64,9 @@ v2.67.09  2021-12-10   No web input fields for BT if BT not compiled in. (PR by 
 //           D E F A U L T   T R A N S L A T I O N   M O D E   S E T T I N G S   
 //=================================================================================================       
 // Choose only one of these three translation modes
-#define Ground_Mode          // Translator between Taranis et al and LRS transceiver (like Dragonlink, ULRS, RFD900...)
+//#define Ground_Mode          // Translator between Taranis et al and LRS transceiver (like Dragonlink, ULRS, RFD900...)
 //#define Air_Mode             // Translator between FrSky receiver (like XRS) and Flight Controller (like Pixhawk)
-//#define Relay_Mode           // Translator between LRS tranceiver (like Dragonlink) and FrSky receiver (like XRS) in relay box on the ground
+#define Relay_Mode           // Translator between LRS tranceiver (like Dragonlink) and FrSky receiver (like XRS) in relay box on the ground
 
 
 //=================================================================================================
@@ -162,23 +162,23 @@ v2.67.09  2021-12-10   No web input fields for BT if BT not compiled in. (PR by 
 #define Start_WiFi                              // Start WiFi at startup, override startWiFi pin
 
 #define HostName             "MavToPass"        // This translator's host name
-#define APssid               "Crossfire_AP"             // The AP SSID that we advertise         ====>
-#define APpw                 "password"         // Change me! Must be >= 8 chars
+#define APssid               "droneWiFi"        // The AP SSID that we advertise         ====>
+#define APpw                 "drone123"         // Change me! Must be >= 8 chars
 #define APchannel            9                  // The wifi channel to use for our AP
-#define STAssid              "Crossfire_AP"            // Target AP to connect to (in STA mode) <====
-#define STApw                "password"         // Target AP password (in STA mode). Must be >= 8 chars      
+#define STAssid              "NGASALAN"     // Target AP to connect to (in STA mode) <====
+#define STApw                "jinchuuriki"         // Target AP password (in STA mode). Must be >= 8 chars      
 
 // Choose one default mode for ESP only - AP means advertise as an access point (hotspot). STA means connect to a known host
 //#define WiFi_Mode   1  //AP
-#define WiFi_Mode   2  // STA
-//#define WiFi_Mode   3  // (STA>AP) STA failover to AP
+//#define WiFi_Mode   2  // STA
+#define WiFi_Mode   3  // (STA>AP) STA failover to AP
 
 // Choose one default protocol - for ESP32 only
 //#define Mav_WiFi_Protocol 1    // TCP/IP
 #define Mav_WiFi_Protocol 2    // UDP 
 
-uint16_t  TCP_localPort = 5760;     
-uint16_t  TCP_remotePort = 5760;    
+uint16_t  TCP_localPort = 123;     
+uint16_t  TCP_remotePort = 123;    
 uint16_t  UDP_localPort = 14555;    // readPort - (default 14555) remote host (like MP and QGC) expects to send to this port
 uint16_t  UDP_remotePort = 14550;   // sendPort - (default 14550) remote host reads on this port  
 
@@ -746,27 +746,27 @@ bool daylightSaving = false;
   //=========================================================================   
   #if (ESP8266_Variant == 2)   // ESP-12E, ESP-F barebones boards. RFD900X TX-MOD, QLRS et al - use Generic ESP8266 on IDE
     //                         GPIO as per node mcu
-    static const uint8_t D0   = 16;   // SCL - optional
-    static const uint8_t D1   = 5;    // SDA - optional
-    static const uint8_t D2   = 4;    // FPort_tx - Use me in single wire mode
-    static const uint8_t D3   = 0;    // Flash
-    static const uint8_t D4   = 2;    // BoardLED & ( TXD1 optional debug out (MUST set MavStatusLed to 99) )
-    static const uint8_t D5   = 14;   // FPort_rx (unused in half-duplex)
-    static const uint8_t D6   = 12;   // P2-3 exposed dual row of pins
-    static const uint8_t D7   = 13;   // CTS
-    static const uint8_t D8   = 15;   // RTS
-    static const uint8_t D9   = 3;    // RXD0 mavlink and flashing
-    static const uint8_t D10  = 1;    // TXD0 mavlink and flashing
+    //static const uint8_t D0   = 16;   // SCL - optional
+    //static const uint8_t D1   = 5;    // SDA - optional
+    //static const uint8_t D2   = 4;    // FPort_tx - Use me in single wire mode
+    //static const uint8_t D3   = 0;    // Flash
+    //static const uint8_t D4   = 2;    // BoardLED & ( TXD1 optional debug out (MUST set MavStatusLed to 99) )
+    //static const uint8_t D5   = 14;   // FPort_rx (unused in half-duplex)
+    //static const uint8_t D6   = 12;   // P2-3 exposed dual row of pins
+    //static const uint8_t D7   = 13;   // CTS
+    //static const uint8_t D8   = 15;   // RTS
+    //static const uint8_t D9   = 3;    // RXD0 mavlink and flashing
+    //static const uint8_t D10  = 1;    // TXD0 mavlink and flashing
                                       // NOTE: You can have Mavlink status on onboard LED, or debugging out of pin D4, not both at once
-    #define MavStatusLed   D4          // D4 on board LED -  NB NB NB NB NB NB use 99 while debugging on txd1
-    #define InvertMavLed  true         // On board LED needs inverted logic 
-    #define BufStatusLed   99          // None
+    #define MavStatusLed   D1          // D4 on board LED -  NB NB NB NB NB NB use 99 while debugging on txd1
+    #define InvertMavLed  false        // On board LED needs inverted logic 
+    #define BufStatusLed   D2          // None
     //                     D4          // TXD1 - Serial1 default debug log out SHARED WITH BOARD LED                           
     #define mav_rxPin      D9          // RXD0 default  
     #define mav_txPin      D10         // TXD0 default    
-    #define fr_rxPin       D5          // FPort- Not used in single wire mode
-    #define fr_txPin       D2          // FPort(half-duplex) inverted - Use me in single wire mode
-    #define startWiFiPin   D6          // Trigger WiFi startup
+    #define fr_rxPin       D6          // FPort- Not used in single wire mode
+    #define fr_txPin       D7          // FPort(half-duplex) inverted - Use me in single wire mode
+    #define startWiFiPin   D5          // Trigger WiFi startup
     #define resetEepromPin 99          // Try D8, trigger EEPROM reset to default settings in config.h  HIGH(3.3V)=Press       
     //#define displaySupport       // activate me if you have a display
                                        // NOTE: There may not be enough pins for wifi pin AND display scrolling  
@@ -1158,7 +1158,7 @@ bool daylightSaving = false;
       #include <ESP8266WiFi.h>   // Includes AP class
       #if defined webSupport
         #include <ESP8266WebServer.h>  
-        #include <ESPmDNS.h>  
+        #include <ESP8266mDNS.h>  
         ESP8266WebServer server(80);  
         #include <WiFiUdp.h>       
       #endif      
