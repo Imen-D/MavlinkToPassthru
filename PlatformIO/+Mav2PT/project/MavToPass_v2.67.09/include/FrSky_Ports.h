@@ -373,7 +373,7 @@
           }  
 
           delay(100);
-          frSerial.begin(frBaud, SWSERIAL_8N1, frRx, frTx, frInvert);     // SoftwareSerial
+          frSerial.begin(frBaud, SWSERIAL_8N1, frRx, frTx, false);     // SoftwareSerial
           delay(100);
           Log.println("Using SoftwareSerial for F.Port");
 
@@ -887,18 +887,18 @@
     #if (defined ESP8266) || (defined ESP32) 
         if(mode == tx && modeNow !=tx) { 
           modeNow=mode;
-          #if (defined ESP_Onewire) && (defined ESP32_SoftwareSerial)        
+          //#if (defined ESP_Onewire) && (defined ESP32_SoftwareSerial)        
           frSerial.enableTx(true);  // Switch F.Port into send mode
-          #endif
+          //#endif
           #if defined Debug_FrPort_Switching
             Log.print("tx");
           #endif
         }   else 
         if(mode == rx && modeNow != rx) {   
           modeNow=mode; 
-          #if (defined ESP_Onewire) && (defined ESP32_SoftwareSerial)                  
+          //#if (defined ESP_Onewire) && (defined ESP32_SoftwareSerial)                  
           frSerial.enableTx(false);  // disable interrupts on tx pin     
-          #endif
+          //#endif
           #if defined Debug_FrPort_Switching
             Log.print("rx");
           #endif
