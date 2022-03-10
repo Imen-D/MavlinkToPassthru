@@ -43,8 +43,8 @@ v2.17.12  2022-01-31   Clean up ESP8266 compile (sbus options)
 //#define ESP32_Variant     7    //  ESP32 Dev Board with separate ILI9341 2.8" COLOUR TFT SPI 240x320 V1.2  select Dev Board in IDE
 
 //#define ESP8266_Variant   1   // NodeMCU ESP 12F - choose "NodeMCU 1.0(ESP-12E)" board in the IDE
-//#define ESP8266_Variant   2   // ESP-12E, ESP-F barebones boards. RFD900X TX-MOD, QLRS et al - use Generic ESP8266 in the IDE
-#define ESP8266_Variant   3   // ESP-12F - Wemos® LOLIN D1 Mini - use Generic ESP8266 in the IDE
+#define ESP8266_Variant   2   // ESP-12E, ESP-F barebones boards. RFD900X TX-MOD, QLRS et al - use Generic ESP8266 in the IDE
+//#define ESP8266_Variant   3   // ESP-12F - Wemos® LOLIN D1 Mini - use Generic ESP8266 in the IDE
 
 #define RP2040_Variant     1    //  Raspberry pi pico  select Raspberry Pi RP2040 Boards in Arduino IDE
 
@@ -128,9 +128,9 @@ v2.17.12  2022-01-31   Clean up ESP8266 compile (sbus options)
 //==================           T R A N S L A T I O N   M O D E   S E T T I N G S   ================
 //=================================================================================================       
 // Choose only one of these three translation modes
-#define Ground_Mode          // Translator between Taranis et al and LRS transceiver (like Dragonlink, ULRS, RFD900...)
+//#define Ground_Mode          // Translator between Taranis et al and LRS transceiver (like Dragonlink, ULRS, RFD900...)
 //#define Air_Mode             // Translator between FrSky receiver (like XRS) and Flight Controller (like Pixhawk)
-//#define Relay_Mode           // Translator between LRS tranceiver (like Dragonlink) and FrSky receiver (like XRS) in relay box on the ground
+#define Relay_Mode           // Translator between LRS tranceiver (like Dragonlink) and FrSky receiver (like XRS) in relay box on the ground
 
 
 //=================================================================================================
@@ -178,8 +178,8 @@ v2.17.12  2022-01-31   Clean up ESP8266 compile (sbus options)
 #define Start_WiFi                              // Start WiFi at startup, override startWiFi pin
 
 #define HostName             "MavToPass"        // This translator's host name
-#define APssid               "Crossfire_AP"             // The AP SSID that we advertise         ====>
-#define APpw                 "password"         // Change me! Must be >= 8 chars
+#define APssid               "mLRS_WiFi"             // The AP SSID that we advertise         ====>
+#define APpw                 "drone123"         // Change me! Must be >= 8 chars
 #define APchannel            9                  // The wifi channel to use for our AP
 #define STAssid              "Crossfire_AP"            // Target AP to connect to (in STA mode) <====
 #define STApw                "password"         // Target AP password (in STA mode). Must be >= 8 chars      
@@ -653,12 +653,12 @@ bool daylightSaving = false;
                                       // NOTE: You can have Mavlink status on onboard LED, or debugging out of pin D4, not both at once
     #define MavStatusLed   D4          // D4 on board LED -  NB NB NB NB NB NB use 99 while debugging on txd1
     #define InvertMavLed  true         // On board LED needs inverted logic 
-    #define BufStatusLed   99          // None
+    #define BufStatusLed   D1          // None
     //                     D4          // TXD1 - Serial1 default debug log out SHARED WITH BOARD LED                           
     #define mav_rxPin      D9          // RXD0 default  
     #define mav_txPin      D10         // TXD0 default    
-    #define fr_rxPin       D5          // FPort- Not used in single wire mode
-    #define fr_txPin       D2          // FPort(half-duplex) inverted - Use me in single wire mode
+    #define fr_rxPin       D7          // FPort- Not used in single wire mode
+    #define fr_txPin       D7          // FPort(half-duplex) inverted - Use me in single wire mode
     #define startWiFiPin   D6          // Trigger WiFi startup
     #define resetEepromPin 99          // Try D8, trigger EEPROM reset to default settings in config.h  HIGH(3.3V)=Press       
     //#define displaySupport       // activate me if you have a display
