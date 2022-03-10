@@ -3408,6 +3408,8 @@ void Mavlink_Request_Home_Position() {  // #410  https://mavlink.io/en/messages/
    }
    #endif
  
+ #include <sstream>
+
    //==================================================
    void SetupWiFi() { 
     
